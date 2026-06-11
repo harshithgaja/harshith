@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshith Gaja | Professional Video Editor Portfolio</title>
+    <meta name="description" content="Portfolio of Harshith Gaja, a professional video editor specializing in Cinematic Storytelling, YouTube Videos, Documentaries, and Reels.">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-color: #05050a;
+            --card-bg: rgba(15, 15, 25, 0.4);
+            --border-glow: rgba(0, 162, 255, 0.2);
+            --accent-neon: #00a2ff;
+            --accent-glow: rgba(0, 162, 255, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- BACKGROUND PARTICLES --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- GLOW EFFECTS --- */
+        .ambient-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,162,255,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 20%;
+            left: -10%;
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(40px);
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,162,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            bottom: 10%;
+            right: -10%;
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(50px);
+        }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #151525;
+            border-radius: 4px;
+            border: 1px solid var(--border-glow);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-neon);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* --- PRELOADER --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        #loader .logo-build {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        #loader .logo-build span {
+            color: var(--accent-neon);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+        .line-loader {
+            width: 150px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .line-loader::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-neon);
+            box-shadow: 0 0 10px var(--accent-glow);
+            animation: loading 1.5s infinite ease-in-out;
+        }
+        @keyframes loading {
+            0% { left: -100%; }
+            50% { left: 0; }
+            100% { left: 100%; }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 10, 0.7);
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: var(--accent-neon);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s, text-shadow 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover {
+            color: var(--text-main);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* --- GLOBAL UTILITIES & ANIMATIONS --- */
+        section {
+            padding: 120px 10% 80px 10%;
+            position: relative;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-neon);
+            box-shadow: 0 0 10px var(--accent-glow);
+            border-radius: 2px;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            gap: 40px;
+            overflow: hidden;
+        }
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 10;
+        }
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        .hero-content h1 span {
+            display: block;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-neon) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.2);
+        }
+        .hero-subheading {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-left: 2px solid var(--accent-neon);
+            padding-left: 15px;
+        }
+        .cta-container {
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            padding: 14px 32px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--accent-neon);
+            color: #000;
+            box-shadow: 0 4px 20px rgba(0, 162, 255, 0.3);
+        }
+        .btn-primary:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 4px 25px rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: var(--glass-blur);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px var(--border-glow);
+            color: var(--accent-neon);
+            transform: translateY(-3px);
+        }
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 80%;
+        }
+        /* Glassmorphic Frame for Profile Picture */
+        .image-frame {
+            position: relative;
+            width: 380px;
+            height: 480px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 15px;
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02);
+            transform: rotate(2s);
+            transition: transform 0.5s ease;
+        }
+        .image-frame:hover {
+            transform: scale(1.02) rotate(0deg);
+            border-color: rgba(0, 162, 255, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 162, 255, 0.15);
+        }
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            filter: grayscale(20%);
+            transition: filter 0.5s;
+        }
+        .image-frame:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            background: linear-gradient(180deg, var(--bg-color) 0%, #080812 100%);
+        }
+        .about-grid {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1.2;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        .about-text p {
+            margin-bottom: 25px;
+        }
+        .skills-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+        }
+        /* Skill Cards */
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            backdrop-filter: var(--glass-blur);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,162,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-neon);
+            box-shadow: 0 10px 30px rgba(0, 162, 255, 0.15);
+        }
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+        .skill-card i {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+        .skill-card:hover i {
+            color: var(--accent-neon);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        .skill-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- PORTFOLIO SECTION (NETFLIX STYLE) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .video-showcase {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            aspect-ratio: 16 / 9;
+        }
+        .video-showcase video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.7;
+            transition: opacity 0.5s ease, transform 0.8s ease;
+        }
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 2;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .video-showcase:hover video {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+        .video-meta {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-neon);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .video-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .video-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 600px;
+        }
+
+        /* --- SERVICES & PRICING SECTION --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 40px 30px;
+            backdrop-filter: var(--glass-blur);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 1px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 162, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 162, 255, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: rgba(0, 162, 255, 0.4);
+            background: rgba(0, 162, 255, 0.03);
+        }
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px; right: 20px;
+            background: var(--accent-neon);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+        .tier-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .tier-price {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 25px;
+        }
+        .tier-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .tier-features {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+        .tier-features li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tier-features li i {
+            color: var(--accent-neon);
+            font-size: 0.85rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            background: #030307;
+            text-align: center;
+            padding: 100px 5%;
+        }
+        .contact-container {
+            max-width: 700px;
+            margin: 0auto;
+        }
+        .contact-text {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        .method-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+        .method-item i {
+            color: var(--accent-neon);
+            font-size: 1.3rem;
+        }
+        .method-item:hover {
+            color: var(--accent-neon);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            border-color: var(--accent-neon);
+            color: var(--accent-neon);
+            box-shadow: 0 0 15px var(--border-glow);
+            transform: translateY(-3px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #555565;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            #hero {
+                flex-direction: column-reverse;
+                justify-content: center;
+                text-align: center;
+                padding-top: 100px;
+                height: auto;
+                min-height: 100vh;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-subheading {
+                border-left: none;
+                padding-left: 0;
+            }
+            .cta-container {
+                justify-content: center;
+            }
+            .hero-image-container {
+                height: auto;
+                margin-bottom: 30px;
+            }
+            .image-frame {
+                width: 300px;
+                height: 380px;
+            }
+            .about-grid {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 15px 5%;
+            }
+            .nav-links {
+                display: none; /* Can be enhanced with burger menu if needed */
+            }
+            section {
+                padding: 80px 6% 60px 6%;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .video-overlay {
+                padding: 20px;
+            }
+            .video-title {
+                font-size: 1.3rem;
+            }
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cinematic Loading Animation -->
+    <div id="loader">
+        <div class="logo-build">Harshith<span>Gaja</span></div>
+        <div class="line-loader"></div>
+    </div>
+
+    <!-- Floating Background Canvas -->
+    <div id="particles-js"></div>
+
+    <!-- Ambient Glow Drops -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Harshith<span>.G</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Professional <span>Video Editor</span></h1>
+            <div class="hero-subheading">Cinematic Storytelling • YouTube Videos • Documentaries • Reels</div>
+            <div class="cta-container">
+                <a href="#portfolio" class="btn btn-primary">View Work</a>
+                <a href="#contact" class="btn btn-secondary">Hire Me</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="image-frame">
+                <!-- Replace with actual professional image path -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Harshith Gaja Portrait">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">The Editor</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Hello! I'm Harshith Gaja, a passionate post-production professional focused on high-end visual narrative creation. I piece imagery and rhythm together to capture audiences within the first 3 seconds.</p>
+                <p>Whether crafting hyper-retentive social media reels, full-length YouTube masterclasses, or human-centric independent documentaries, my goal is always absolute viewer engagement through smooth audio-visual architecture.</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>Adobe After Effects</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <h3>Adobe Premiere Pro</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>CapCut Pro</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="reveal">
+        <h2 class="section-title">Featured Showcase</h2>
+        <div class="portfolio-grid">
+            
+            <!-- Video Showcase Item 1 -->
+            <div class="video-showcase">
+                <!-- Replace with actual hosted video links (MP4/WebM) -->
+                <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-cinematic-mountain-range-under-a-blue-sky-43141-large.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay">
+                    <span class="video-meta">Cinematic / Commercial</span>
+                    <h3 class="video-title">Echoes of the High Peaks</h3>
+                    <p class="video-desc">A deep dive color grading study focused on high-contrast environments and sweeping motion transitions.</p>
+                </div>
+            </div>
+
+            <!-- Video Showcase Item 2 -->
+            <div class="video-showcase">
+                <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=1200">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-neon-light-from-a-tunnel-in-a-modern-city-43284-large.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay">
+                    <span class="video-meta">YouTube / Documentary</span>
+                    <h3 class="video-title">The Neon Horizon</h3>
+                    <p class="video-desc">Fast-paced, high-retention documentary editing built with customized multi-layered typography animations.</p>
+                </div>
+            </div>
+
+            <!-- Video Showcase Item 3 -->
+            <div class="video-showcase">
+                <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-dj-playing-music-at-a-club-42289-large.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay">
+                    <span class="video-meta">Short Form / Reels</span>
+                    <h3 class="video-title">Hyper-Paced Urban Beats</h3>
+                    <p class="video-desc">Micro-content optimization using audio-synced beat cuts, sound design, and custom graphic accents.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="reveal">
+        <h2 class="section-title">Rate Guide</h2>
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <div>
+                    <div class="tier-name">Shorts Editing</div>
+                    <div class="tier-price">₹499<span> / video</span></div>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Dynamic Subtitles</li>
+                        <li><i class="fa-solid fa-check"></i> Engagement Zooms</li>
+                        <li><i class="fa-solid fa-check"></i> SFX Included</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-secondary">Order</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div>
+                    <div class="tier-name">Reels Editing</div>
+                    <div class="tier-price">₹999<span> / video</span></div>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Advanced Sound Design</li>
+                        <li><i class="fa-solid fa-check"></i> High Color Grading</li>
+                        <li><i class="fa-solid fa-check"></i> Seamless Visual Hooks</li>
+                        <li><i class="fa-solid fa-check"></i> Trend Alignment</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-primary">Order</a>
+            </div>
+
+            <div class="pricing-card">
+                <div>
+                    <div class="tier-name">YouTube Editing</div>
+                    <div class="tier-price">₹2,999<span> / video</span></div>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Up to 15 mins runtime</li>
+                        <li><i class="fa-solid fa-check"></i> Multi-cam Syncing</li>
+                        <li><i class="fa-solid fa-check"></i> Intros & B-Roll mix</li>
+                        <li><i class="fa-solid fa-check"></i> Full Revision Cycle</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-secondary">Order</a>
+            </div>
+
+            <div class="pricing-card">
+                <div>
+                    <div class="tier-name">Motion Graphics</div>
+                    <div class="tier-price">Custom<span> Work</span></div>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Unique Asset Design</li>
+                        <li><i class="fa-solid fa-check"></i> Complex 2D/3D Tracking</li>
+                        <li><i class="fa-solid fa-check"></i> Tailored Brand Elements</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-secondary">Inquire</a>
+            </div>
+
+            <div class="pricing-card">
+                <div>
+                    <div class="tier-name">Documentary</div>
+                    <div class="tier-price">Custom<span> Scale</span></div>
+                    <ul class="tier-features">
+                        <li><i class="fa-solid fa-check"></i> Long-form Story Arcs</li>
+                        <li><i class="fa-solid fa-check"></i> Deep Narrative Flow</li>
+                        <li><i class="fa-solid fa-check"></i> Pro Audio Master Mix</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-secondary">Inquire</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="reveal">
+        <div class="contact-container">
+            <h2 class="section-title">Start a Project</h2>
+            <p class="contact-text">Ready to transition your video concepts into world-class digital retention drivers? Let's talk.</p>
+            
+            <div class="contact-methods">
+                <a href="mailto:kharshith145@gmail.com" class="method-item">
+                    <i class="fa-solid fa-envelope"></i> kharshith145@gmail.com
+                </a>
+                <a href="https://wa.me/916363322940" target="_blank" class="method-item">
+                    <i class="fa-brands fa-whatsapp"></i> +91 6363322940
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/harshith.gaja/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/harshith-kumar-h-r-2aaba732a" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Harshith Gaja. All Rights Reserved. Engineered with precision.</p>
+    </footer>
+
+    <!-- JS PARTICLE PLUGIN VIA CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        /* --- PRELOADER LOGIC --- */
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 600); // Gives a high-end cinematic pause on load
+        });
+
+        /* --- SCROLL REVEAL ENGINE --- */
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 120;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealElements);
+        // Initial call to reveal items on hero instantly
+        document.addEventListener("DOMContentLoaded", revealElements);
+
+        /* --- PARTICLES SETUP --- */
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 35, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00a2ff" },
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.15,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.05, "sync": false }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": { "enable": false },
+                "move": {
+                    "enable": true,
+                    "speed": 0.6,
+                    "direction": "top",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false } } },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
